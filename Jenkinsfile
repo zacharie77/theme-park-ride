@@ -1,33 +1,18 @@
-pipeline {
-    agent any
-    environment {
-        PATH = "/opt/apache-maven-3.6.3/bin:$PATH"
+node('master'){
+    env.PATH = "/opt/maven3/bin/:$PATH"
+    
+    stage('Git Clone/Pull'){
+        git branch: 'master', 
+        url: 'https://github.com/COMPTE_GITHUB/theme-park-ride'
     }
-    stages {
-        stage("clone code"){
-            steps{
-               git credentialsId: 'git_credentials', url: 'https://github.com/benjamaa-soufiene/theme-park-ride.git'
-            }
-        }
-        stage("Build code"){
-            steps{
-              sh "mvn clean compile"
-            }
-        }
-         stage("Test code"){
-            steps{
-              sh "mvn clean test"
-            }
-        }
-         stage("Package code"){
-            steps{
-              sh "mvn clean package"
-            }
-        }
-        stage("Install code"){
-            steps{
-              sh "mvn clean install"
-            }
-        
+    stage('Build'){
+         sh "mvn clean compile"
     }
+    stage('Test'){
+          sh "mvn clean test"
+    }
+    stage('Package'){
+          sh "mvn clean package"
+   }
 }
+
