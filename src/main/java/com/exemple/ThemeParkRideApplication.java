@@ -14,8 +14,7 @@ public class ThemeParkRideApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ThemeParkRideApplication.class);
 	}
-	kfknqspfovp,opxv<cw,mlclmlùmm
-		cl^cl
+	
 	@Bean
 	public CommandLineRunner sampleData(ThemeParkRideRepository repository) {
 		return (args) -> {
