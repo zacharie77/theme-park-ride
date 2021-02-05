@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 import com.exemple.model.ThemeParkRide;
 import com.exemple.repository.ThemeParkRideRepository;
-gfdo^go^s<fb<fb<bù;mcx
+
 @SpringBootApplication
 public class ThemeParkRideApplication {
 
