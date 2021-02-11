@@ -9,7 +9,9 @@ node('master'){
           sh "mvn clean install"
    }
  stage('Build Docker Image'){
-     sh 'docker build -t benjamaasoufiene/theme-park-ride.git:1.0.0 .'
+     sh 'docker build -t theme-park-ride.git:1.0.0 .'
   }   
-
+ stage('Deploy'){
+     sh 'docker run -d  -p 8081:8081 theme-park-ride.git:1.0.0 .'
+  } 
 }
