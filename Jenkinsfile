@@ -3,7 +3,7 @@ node('master'){
     
     stage('Git Clone/Pull'){
         git branch: 'master', 
-        url: 'https://github.com/COMPTE_GITHUB/theme-park-ride'
+        url: 'https://github.com/benjamaa-soufiene/theme-park-ride.git'
     }
     stage('Build'){
          sh "mvn clean compile"
