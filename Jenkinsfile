@@ -14,5 +14,8 @@ node('master'){
     stage('Package'){
           sh "mvn clean package"
    }
+   stage('Install'){
+          sh "mvn clean install"
+   }
 }
 
