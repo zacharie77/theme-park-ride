@@ -1,21 +1,24 @@
 node('master'){
     env.PATH = "/opt/maven3/bin/:$PATH"
-    
+    docker {
+            image "maven:3.6.0-jdk-13"
+            label "docker"
+            args "-v /tmp/maven:/var/maven/.m2 -e MAVEN_CONFIG=/var/maven/.m2"
+        }
     stage('Git Clone/Pull'){
         git branch: 'master', 
         url: 'https://github.com/benjamaa-soufiene/theme-park-ride.git'
     }
-    stage('Build'){
-         sh "mvn clean compile"
+    stages {
+        stage("Build") {
+            steps {
+                sh "mvn -version"
+                sh "mvn clean install"
+            }
+        }
     }
-    stage('Test'){
-          sh "mvn clean test"
+    post {
+        always {
+            cleanWs()
+        }
     }
-    stage('Package'){
-          sh "mvn clean package"
-   }
-   stage('Install'){
-          sh "mvn clean install"
-   }
-}
-
